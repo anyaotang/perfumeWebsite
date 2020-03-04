@@ -1,0 +1,76 @@
+.nav-tabs {
+	border-bottom: 0px;
+	margin: 6px 0;
+}
+
+.nav-tabs>li>a {
+	margin-right: 0;
+	border-radius: 0;
+	border: 0;
+	padding: 10px 11px;
+	color: #6C6C6C;
+	font-family: '微软雅黑';
+}
+
+.nav-tabs li.active a,
+.nav-tabs li.active a:focus,
+.nav-tabs li.active a:hover {
+	color: #fff !important;
+	background-color: #F19BAA !important;
+	border: 0;
+}
+
+.nav>li>a:focus,
+.nav>li>a:hover {
+	text-decoration: none;
+	background-color: #F19BAA;
+	color: #fff;
+}
+
+.tab-content .tab-pane ul {
+	padding-left: 36px;
+}
+
+.tab-content .tab-pane ul li {
+	display: inline-block;
+	line-height: 18px;
+	text-align: center;
+	width: 215px;
+	height: 200px;
+	overflow: hidden;
+	margin-bottom: 65px;
+}
+
+.tab-content .tab-pane li a {
+	text-decoration: none;
+	color: #6c6c6c;
+	font-size: 13px;
+}
+.tab-content .tab-pane img {
+	width: 100%;
+}
+.tab-content .tab-pane .imgborder {
+	width: 150px;
+	height: 150px;
+	font-size: 80px;
+	display: block;
+	text-align: center;
+	vertical-align: middle;
+	padding-bottom: 5px;
+	margin: 0 auto;
+}
+
+.tab-content .tab-pane .imgborder img {
+	max-width: 100%;
+	max-height: 150px;
+	vertical-align: middle;
+	filter: opacity(0.88);
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	border: 0;
+	border-style: none;
+	border-width: 0;
+	background: none;
+}
+

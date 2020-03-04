@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>香调</title>
+		<link rel="stylesheet" type="text/css" href="/public/bootstrap-3.3.7/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="/public/css/fragrancenotes.css"/>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-10 col-md-offset-1">
+					<!-- 头部 -->
+					<ul class="nav nav-tabs" id="myTab">
+						<li><a href="#home">香调分类</a></li>
+						<li><a href="#messages">柑橘调</a></li>
+						<li><a href="#settings">绿叶调</a></li>
+						<li><a href="#messages">水生调</a></li>
+						<li><a href="#settings">馥奇香调</a></li>
+						<li><a href="#messages">皮革调</a></li>
+						<li><a href="#settings">甘苔调</a></li>
+						<li><a href="#messages">木质调</a></li>
+						<li><a href="#settings">东方调</a></li>
+						<li><a href="#messages">美食调</a></li>
+						<li><a href="#settings">花香调</a></li>
+						<li><a href="#messages">果香调</a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- 内容 -->
+			<div class="tab-content">
+				<div class="tab-pane " id="home">
+					<div class="row">
+						<div class="col-md-12 col-lg-12">
+							<div class="xdclassify">
+								<div id="banner" class="banner">
+									<img src="https://img.xssdcdn.com/static/xiangdiaofenlei2.jpg" alt="brandbanner轮播图" width="600px" height="600px"
+									 border="0" usemap="#map">
+								</div>
+								<map name="map" id="map">
+									<area shape="circle" coords="357,106,55" href="#messages" alt="" />
+									<area shape="circle" coords="456,165,55" href="#profile" alt="" />
+									<area shape="circle" coords="497,274,55" href="#settings" alt="" />
+									<area shape="circle" coords="490,392,55" href="#messages" alt="" />
+									<area shape="circle" coords="413,475,55" href="#messages" alt="" />
+									<area shape="circle" coords="299,500,55" href="#messages" alt="" />
+									<area shape="circle" coords="186,475,55" href="#messages" alt="" />
+									<area shape="circle" coords="114,392,55" href="#messages" alt="" />
+									<area shape="circle" coords="105,274,55" href="#messages" alt="" />
+									<area shape="circle" coords="142,165,55" href="#messages" alt="" />
+									<area shape="circle" coords="240,106,55" href="#messages" alt="" />
+								</map>
+							</div>
+							<div class="fragranceText">
+								<h1>香调分类详解</h1>
+								<p>简单的讲，香调是香水的一种分类规则，根据香水最主要的气味特征以及使用的香料划分为
+									不同的类别。即使你是个刚刚开始用香水的新手，很可能也已经听过“花香调”“果香调”“木质调”
+									这样的说法。
+								</p>
+								<p>
+									<span>香调分类存在的最主要目的就是，帮助人们在不用亲自闻香水的情况下，就能根据自
+										己的喜好，快速筛选、排除香水。</span>这也是专柜导购询问你喜欢哪款香水，并作
+									出推荐的主要依据之一（虽然她们大多并分不清楚）。
+								</p>
+								<p>一个人的嗅觉偏好虽然是会经常改变的，但你最喜欢的那些香水，很可能就属于相同的一两种
+									香调。通过观看香调圆轴图，你可以更容易地理解自己的气味喜好，以及10种香调之间的递进关系。</p>
+								<p>
+									虽然对于用香高手而言，他们会喜欢各种香调的香水，但是知道一款香水的香调仍然是很有用的信息。
+									<span>香调能告诉你一款香水最主要的特征，比如一个人如果走的是小清新路线，那么辛辣浓厚的东
+										方调香水很可能并不适合。</span>
+								</p>
+								<p>对于香调家族的具体构成，并没有一个统一的规则。在香水业内，香调分类永远是一个争议不断的话题，
+									就比如花香调下面有几个二级香调，皮革调是否该自成一派，这些问题并没有达成一致。具体一款香水属于
+									哪个香调也包含了很多主观的因素，因为它背后并没有一个精确的算法。
+								</p>
+								<p>香水时代网将专业文献，外国流行的分法，以及中国现有的习惯相结合，将香调家族分成了11大类，它
+									们分别是：柑橘调、绿叶调、水生调、馥奇香调、皮革调、甘苔调(西普调)、木质调、东方调、美食调、花
+									香调和果香调。
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane" id="profile">profile</div>
+				<div class="tab-pane" id="messages">messages</div>
+				<div class="tab-pane" id="settings">settings</div>
+			</div>
+		</div>
+	</body>
+	<!-- <script src="/public/js/jquery-3.3.1.min.js"></script> -->
+	<script src="/public/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+	<script>
+		$(function() {
+			$('#myTab a:first').tab('show').addClass('actives'); //初始化显示哪个tab 
+
+			$('#myTab a').click(function(e) {
+				e.preventDefault(); //阻止a链接的跳转行为 
+				$(this).tab('show').addClass('active'); //显示当前选中的链接及关联的content 
+			})
+		})
+	</script>
+</html>

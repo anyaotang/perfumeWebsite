@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>品牌呈现</title>
+		<link rel="stylesheet" type="text/css" href="/public/bootstrap-3.3.7/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="/public/css/brand1.css" />
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-10 col-md-offset-1">
+					<!-- 头部 -->
+					<ul class="nav nav-tabs" id="myTab"></ul>
+				</div>
+			</div>
+			<!-- 内容 -->
+			<div class="tab-content">
+				<div class="tab-pane" id="home">
+					<div class="row">
+						<div id="img" class="col-md-12 col-lg-12">
+							<img src="/public/images/brandbannr.png" alt="brandbanner轮播图">
+							<ul class="home"></ul>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane" id="A">A</div>
+				<div class="tab-pane" id="B">B</div>
+				<div class="tab-pane" id="C">C</div>
+				<div class="tab-pane" id="D">D</div>
+				<div class="tab-pane" id="E">E</div>
+			</div>
+		</div>
+	</body>
+	<script src="/public/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+	<script>
+		$(function() {
+			$('#myTab a').click(function(e) {
+				e.preventDefault(); //阻止a链接的跳转行为 
+				$(this).tab('show').addClass('active'); //显示当前选中的链接及关联的content 
+			})
+		})
+		// 标题
+		$.ajax({
+			url: '/api/brandClass',
+			type: 'post',
+			dataType: 'json',
+			success: function(data) {
+				var ht = '';
+				if (data.code == 0) {
+					for (var i = 0; i < data.msg.length; i++) {
+						ht += "<li><a id='name' name= 'name' href='"+data.msg[i].href+"' data-name ='"+data.msg[i].bc_name+"'>"+data.msg[i].bc_name+"</a></li>";
+					}
+					$('#myTab').append(ht);
+				}
+				$('#myTab a:first').tab('show').addClass('actives'); //初始化显示哪个tab 
+			}
+		});
+		$.ajax({
+			url: '/api/brandclasscontent',
+			type: 'post',
+			dataType: 'json',
+			success: function(data) {
+				var ht = '';
+				if (data.code == 0) {
+					for (var i = 0; i < data.msg.length; i++) {
+						ht += "<li> " +
+							"<a href = '#' class = 'imgborder' >" +
+							"<img src = '" + data.msg[i].bcc_img + "' >" +
+							"</a>" +
+							"<a href = '#' ><p>" + data.msg[i].bcc_name_ch + "</p></a>" +
+							"<a href = '#' ><p>" + data.msg[i].bcc_name_eh + "</p></a>" +
+							"</li>";
+					}
+					$('.home').append(ht);
+				}
+			}
+		});
+		$(document).on('click', '#name', function() {
+			var tabname =  $(this).attr("name");
+			console.log(tabname)
+			$.ajax({
+				url: '/api/brandclasscontent1',
+				type: 'post',
+				dataType: 'json',
+				data: tabname,
+				success: function(data){
+					console.log(data);
+				}
+			});
+		});
+	</script>
+</html>

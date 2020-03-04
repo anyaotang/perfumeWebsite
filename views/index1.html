@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="/public/js/jquery-3.3.1.min.js"></script>
+		<script src="/public/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<button id="btn">
+			<a class="menu-item" href="javascript:;" id="1" data-href="api/test">打开a链接</a>
+			<a class="menu-item" href="javascript:;" id="2" data-href="api/a">打开a链接</a>
+			</button>
+		<div id="tset">
+			
+		</div>
+	</body>
+	<script type="text/javascript">
+		$(function() {
+			$('#tset').load('api/a')
+			$('#btn a').click(function() {
+				var url = $(this).data("href");
+				console.log(url)
+// 				$('#tset').load(url);
+				$.ajax({
+					url: url,
+					dataType: 'html',
+					// type: "post",
+					async: true,
+					success:function(res){
+						console.log(res)
+						$('#tset').html(res)
+					}
+				})
+			})
+		})
+	</script>
+</html>

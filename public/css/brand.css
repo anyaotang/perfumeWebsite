@@ -1,0 +1,47 @@
+.container ul {
+	padding-left: 36px;
+}
+
+.container ul li {
+	display: inline-block;
+	line-height: 18px;
+	text-align: center;
+	width: 215px;
+	height: 200px;
+	overflow: hidden;
+	margin-bottom: 65px;
+}
+
+.container li a {
+	text-decoration: none;
+	color: #6c6c6c;
+	font-size: 13px;
+}
+.container img {
+	width: 100%;
+}
+.imgborder {
+	width: 150px;
+	height: 150px;
+	font-size: 80px;
+	display: block;
+	text-align: center;
+	vertical-align: middle;
+	padding-bottom: 5px;
+	margin: 0 auto;
+}
+
+.imgborder img {
+	max-width: 100%;
+	max-height: 150px;
+	vertical-align: middle;
+	filter: opacity(0.88);
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	border: 0;
+	border-style: none;
+	border-width: 0;
+	background: none;
+}
+

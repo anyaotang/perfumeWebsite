@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>目录管理</title>
+		<link rel="stylesheet" type="text/css" href="/public/bootstrap-3.3.7/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="/public/fonticon/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="/public/css/table.css" />
+	</head>
+	<body>
+		<div class="col-md-9">
+			<button type="button" class="btn btn-danger btn-xs active" data-toggle="modal" data-target="#addModal">
+				<a href="#"><i class="iconfont icon-tianjia"></i>添加目录</a>
+			</button>
+		</div>
+		<div class="col-md-3">
+			<form id="searchform" class="bs-example bs-example-form" role="form">
+				<input type="search" id="pc_name" class="input" name="cg_alias" placeholder="请输入姓名" />
+				<button type="button" class="btn btn-success btn-sm" id="search">搜索</button>
+			</form>
+		</div>
+		<table id="table" border="1" cellspacing="0" cellpadding="0">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>目录</th>
+					<th>跳转地址</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+		<!-- 添加 -->
+		<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">添加</h4>
+					</div>
+					<div class="modal-body">
+						<form id="addform" class="form-horizontal" role="form">
+							<div class="form-group">
+								<label for="cg_alias" class="col-sm-2 control-label">目录名:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" name="cg_alias" placeholder="请输入目录名" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="cg_url" class="col-sm-2 control-label">地址:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" name="cg_url" placeholder="请输入地址" />
+								</div>
+							</div>
+							<div class="text-right">
+								<span id="returnMessage" class="glyphicon"> </span>
+								<button type="button" class="btn btn1 btn-success" id="add">添加</button>
+								<button type="button" class="btn btn1 btn-danger" data-dismiss="modal">关闭</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 修改 -->
+		<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">修改</h4>
+					</div>
+					<div class="modal-body">
+						<form id="updateform" class="form-horizontal" role="form">
+							<div class="form-group display">
+								<label for="cg_id" class="col-sm-2 control-label">ID:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" name="cg_id" id="cgid" value="" placeholder="请输入ID" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="cg_alias" class="col-sm-2 control-label">目录名:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" name="cg_alias" id="cgalias" value="" placeholder="请输入姓名" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="cg_url" class="col-sm-2 control-label">地址:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" name="cg_url" id="cgurl" value="" placeholder="请输入地址" />
+								</div>
+							</div>
+							<div class="text-right">
+								<span id="returnMessage" class="glyphicon"> </span>
+								<button type="button" class="btn btn1 btn-success" id="update">修改</button>
+								<button type="button" class="btn btn1 btn-danger" data-dismiss="modal">关闭</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="/public/js/jquery-3.3.1.min.js"></script>
+		<script src="/public/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				var ht = ''
+				// 查询
+				$.ajax({
+					type: 'post',
+					url: '/api/catalog',
+					dataType: 'json',
+					success: function(data) {
+						if (data.code == 0) {
+							for (var i = 0; i < data.msg.length; i++) {
+								ht += "<tr>" +
+									"<td >" + data.msg[i].cg_id + "</td>" +
+									"<td >" + data.msg[i].cg_alias + "</td>" +
+									"<td >" + data.msg[i].cg_url + "</td>" +
+									"<td >" +
+									"<button id='update' data-id='" + data.msg[i].cg_id +
+									"' class='btn btn-xs btn-success' data-toggle='modal' data-target='#updateModal'><a href='#'><i class='iconfont icon-web-icon-'></i>修改</a></button>" +
+									"<button id='delete' data-id='" + data.msg[i].cg_id +
+									"' class='btn btn-xs btn-danger'><a href='#'><i class='iconfont icon-shanchu'></i>删除</a></button>" +
+									"</td>" +
+									"</tr>";
+							}
+							$('tbody').append(ht);
+						}
+					}
+				})
+			})
+
+			// 搜索
+			$('#search').click(function() {
+				var data = $('#searchform').serialize();
+				if ($('.input').val() == '') {
+					alert('内容不能为空')
+					return false;
+				} else {
+					var ht = ''
+					$.ajax({
+						url: '/admin/searchcatalog',
+						type: 'post',
+						dataType: 'json',
+						data: data,
+						success: function(data) {
+							if (data.code == 0) {
+								for (var i = 0; i < data.msg.length; i++) {
+									ht += "<tr>" +
+										"<td >" + data.msg[i].cg_id + "</td>" +
+										"<td >" + data.msg[i].cg_alias + "</td>" +
+										"<td >" + data.msg[i].cg_url + "</td>" +
+										"<td >" +
+										"<button id='update' data-id='" + data.msg[i].cg_id +
+										"' class='btn btn-xs btn-success' data-toggle='modal' data-target='#updateModal'><a href='#'><i class='iconfont icon-web-icon-'></i>修改</a></button>" +
+										"<button id='delete' data-id='" + data.msg[i].cg_id +
+										"' class='btn btn-xs btn-danger'><a href='#'><i class='iconfont icon-shanchu'></i>删除</a></button>" +
+										"</td>" +
+										"</tr>";
+								}
+								$('tbody').html(ht);
+								$('.input').val('');
+							}
+						}
+					})
+				}
+			})
+			// 添加
+			$("#add").click(function() {
+				var data = $("#addform").serialize();
+				$.ajax({
+					url: '/admin/catalogAdd',
+					type: 'post',
+					dataType: 'json',
+					data: data,
+					success: function(data) {
+						if (data.code == 0) {
+							alert(data.msg);
+							setTimeout(function() {
+								// 刷新模态框，不然会保留上次填写的数据
+								$("#addModal").on("hidden.bs.modal", function() {
+									$(this).removeData("bs.modal");
+								})
+								$('#addform input').val('');
+								location.reload();
+							}, 1000)
+						} else if (data.code == 1) {
+							alert(data.msg);
+						} else if (data.code == -1) {
+							alert(data.msg);
+							// 刷新模态框，不然会保留上次填写的数据
+							$("#addModal").on("hidden.bs.modal", function() {
+								$(this).removeData("bs.modal");
+							})
+							$('#addform input').val('');
+						}
+					}
+				})
+			})
+			// 查询单条数据
+			$(document).on('click', '#update', function() {
+				var id = $(this).attr("data-id");
+				$.ajax({
+					url: '/admin/catalogId/' + id,
+					type: 'post',
+					dataType: 'json',
+					success: function(data) {
+						if (data.code == 0) {
+							$("#cgid").attr("value", data.msg[0].cg_id);
+							$("#cgalias").attr("value", data.msg[0].cg_alias);
+							$("#cgurl").attr("value", data.msg[0].cg_url);
+						}
+					}
+				})
+			})
+			// 修改
+			$('#update').click(function() {
+				var data = $("#updateform").serialize();
+				console.log(data);
+				$.ajax({
+					url: '/admin/catalogupdate',
+					type: 'post',
+					dataType: 'json',
+					data: data,
+					success: function(data) {
+						if (data.code == 0) {
+							alert(data.msg);
+							setTimeout(function() {
+								location.reload(true);
+							}, 1000)
+						} else if (data.code == 1) {
+							alert(data.msg);
+						} else if (data.code == -1) {
+							alert(data.msg);
+						}
+					}
+				})
+			})
+			// 删除
+			$(document).on('click', '#delete', function() {
+				var id = $(this).attr('data-id');
+				$.ajax({
+					url: '/admin/catalogdelete/' + id,
+					type: 'get',
+					dataType: 'json',
+					success: function(data) {
+						if (data.code == 0) {
+							setTimeout(function() {
+								confirm('确定删除信息吗？');
+								alert(data.msg);
+								location.reload();
+							})
+						} else if (data.code == -1) {
+							alert(data.msg);
+						}
+					}
+				})
+			})
+		</script>
+	</body>
+</html>

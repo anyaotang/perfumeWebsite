@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>香水网站</title>
+		<link rel="stylesheet" type="text/css" href="/public/bootstrap-3.3.7/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="/public/css/index.css" />
+		<style type="text/css">
+			.user {
+				padding-left: 8px;
+			}
+		</style>
+	</head>
+	<body>
+		<!--导航-->
+		<nav class='navbar navbar-inverse'>
+			<div class="container-fluid">
+				<div class="nav-logo">
+					<a class="" href="#">
+						<img class="img-responsive" src="/public/images/logo.png" alt="logo" style="height: 100%;width: auto;" />
+					</a>
+				</div>
+				<div class='navbar-header'>
+					<button class='navbar-toggle' data-toggle='collapse' data-target='#demo'>
+						<span class='icon-bar'></span>
+						<span class='icon-bar'></span>
+						<span class='icon-bar'></span>
+					</button>
+					<!-- <a href="" class='navbar-brand'>菜鸟教程</a> -->
+				</div>
+				<!--  -->
+				<div class='collapse navbar-collapse' id='demo'>
+					<!-- 专题、试香中心、排行榜、更多 -->
+					<ul class='nav navbar-nav nav1'></ul>
+					<!-- 未登录之前 -->
+					<ul id="state_before" class='nav navbar-nav navbar-right'>
+						<li><a id="login" class="login" href="">
+								<i class="iconfont icon-zhanghaodenglu"></i>登录</a></li>
+						<li><a id="register" class="register" href="">
+								<i class="iconfont icon-zhuanjifenxinzhuce"></i>注册</a></li>
+					</ul>
+					<!-- 登录后 -->
+					<ul id="post_state" class='nav navbar-nav navbar-right'></ul>
+					<form class='navbar-form navbar-right col-lg-3' role='search'>
+						<div class='form-group'>
+							<input type="text" class="form-control" placeholder="香水 品牌 气味 帖子...">
+							<button type="button" class="btn">
+								<span class="glyphicon glyphicon-search"></span>搜索
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</nav>
+		<!-- 内容 -->
+		<div id="content" class="content"></div>
+		<!-- 底部 -->
+		<footer class="text-center">
+			<div class="footer">
+				<br /> 此香水网所有产品设计及其展示形式，独家文字，均已受版权或产权保护。
+				<br /> 官方产品图及商标知识产权归品牌所有。香水评论均为本网会员上传，著作权归原作者所有，不代表本站立场。
+				<br /> 未经授权禁止转载、摘编、复制或建立镜像，违者将依法追究责任，特此声明。
+			</div>
+			<div class="terms">
+				<a href="#" target="_blank">使用协议</a>|
+				<a href="#" target="_blank">陇ICP备12000430号-8</a>|
+				<a href="#" target="_blank">陇公网安备 41010302002571号</a>
+			</div>
+		</footer>
+	</body>
+	<script src="/public/js/jquery-3.3.1.min.js"></script>
+	<script src="/public/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+	<script src="/public/js/index.js"></script>
+	<script type="text/javascript">
+		$('.login').click(function() {
+			var sUserAgent = navigator.userAgent.toLowerCase();
+			if (/ipad|iphone|midp|rv:1.2.3.4|ucweb|android|windows ce|windows mobile/.test(sUserAgent)) {
+				$('.login').attr("href", "api/login");
+			} else {
+				$('.login').attr("href", "api/loginpc");
+			}
+		});
+		$('.register').click(function() {
+			var sUserAgent = navigator.userAgent.toLowerCase();
+			if (/ipad|iphone|midp|rv:1.2.3.4|ucweb|android|windows ce|windows mobile/.test(sUserAgent)) {
+				$('.register').attr("href", "api/register");
+			} else {
+				$('.register').attr("href", "api/registerpc");
+			}
+		});
+		// 获取登录后的值
+		var name = window.sessionStorage.getItem("user_name");
+		// console.log(name);
+		// if (name !== null || name !== undefined) {
+			$("#state_before").css('display', 'none');
+			$("#post_state").css('display', 'block');
+			$("#post_state").html("<li class='dropdown'>" +
+				"<a href='' id='users' class='dropdown-toggle' data-toggle='dropdown'>" +
+				"<span>用户信息&nbsp;:&nbsp;</span><span>" + name + "</span>" +
+				"<b class='aret'></b>" +
+				"</a>" +
+				"<ul class='dropdown-menu'>" +
+				"<li><a href='javascript:;'>查看用户信息</a></li>" +
+				"<li class='divider'></li>" +
+				"<li><a id='esc' href='#'>退出</a></li>" +
+				"</ul>" +
+				"</li>");
+		// }
+		// if(name === null || name === undefined) {
+			$("#esc").on("click", function() {
+				$.ajax({
+					url: '/api/logout',
+					type: 'post',
+					success: function(data) {
+						if (data.code == 0) {
+							alert(data.msg);
+							$("#post_state").css('display', 'none');
+							$("#state_before").css('display', 'block');
+						}
+					}
+				})
+			})
+		// }
+		
+	</script>
+</html>

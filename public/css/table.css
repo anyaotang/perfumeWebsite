@@ -1,0 +1,73 @@
+.form {
+	margin: 10px 10px 10px 0;
+	background-color: salmon;
+}
+
+.btn {
+	border-radius: 3px;
+	margin: 5px 0 5px 10px;
+}
+
+.btn a {
+	color: #fff;
+	text-decoration: none;
+}
+
+.col-md-9 {
+	padding-left: 0;
+}
+.col-md-3 {
+	padding-right: 0;
+}
+
+.btn-group-xs > .btn, .btn-xs {
+	padding: 2px 5px;
+} 
+
+.input {
+	outline: none;
+	width: 75%;
+	border-radius: 3px;
+	border: 1px solid gray;
+	padding: 5px 5px;
+}
+table {
+	width: 100%;
+}
+
+table thead {
+	background-color: #555555;
+	color: #fff;
+}
+
+table thead tr th {
+	text-align: center;
+	width: 2%;
+	height: 40px;
+}
+
+table tbody {
+	text-align: center;
+}
+
+table tbody td {
+	height: 40px;
+}
+
+table tbody td img {
+	width: 30px;
+}
+
+/* 底部分页 */
+#pagination {
+	text-align: center;
+}
+
+#pagination button {
+	padding: 5px;
+	box-shadow: 0 0 5px #000;
+}
+
+ .display {
+	 display: none;
+ }

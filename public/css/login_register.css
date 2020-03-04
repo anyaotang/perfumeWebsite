@@ -1,0 +1,86 @@
+* {
+	margin: 0;
+}
+
+.con {
+	background-image: url(/public/images/loginpc.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+	-webkit-background-size: cover;
+	background-position: center 0;
+	background-color: #fff;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	min-width: 1000px;
+	z-index: -10;
+	zoom: 1;
+}
+
+.col-md-6 {}
+
+.col-md-6 h2 {
+	clear: both;
+	font-size: 22px;
+	font-family: 微软雅黑;
+	color: #F18085;
+}
+
+.col-md-6 .modal-body {
+	margin: 100px auto;
+	width: 90%;
+	background-color: #fff;
+	border-radius: 15px;
+	padding-bottom: 50px;
+}
+.form-group span{
+	font-size: 12px;
+	padding-left: 10px;
+	color: #F18085;
+}
+label {
+	color: #F18085;
+}
+
+input {
+	outline: none;
+	background: none;
+}
+
+.form-control {
+	border-radius: 100px;
+	border: 1px solid #e3e3e3;
+}
+
+.form-control:focus {
+	border: 1px solid #df7986;
+}
+
+.btn-danger {
+	width: 100%;
+	border-radius: 100px;
+	background-color: #df7986;
+	border: 1px solid #df7986;
+}
+
+.btn-danger:hover {
+	background-color: #f18085;
+	border: 1px solid #f18085;
+}
+
+.text-center span {
+	position: relative;
+	top: 10px;
+	color: #b2b2b2;
+}
+
+.text-center span a {
+	color: #F18085;
+	padding-left: 8px;
+}
+
+button {
+	outline: none; //消除默认点击蓝色边框效果
+}

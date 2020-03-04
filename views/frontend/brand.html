@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>品牌呈现</title>
+		<link rel="stylesheet" type="text/css" href="/public/bootstrap-3.3.7/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="/public/css/brand.css" />
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 col-lg-12">
+					<img src="/public/images/brandbannr.png" alt="brandbanner轮播图">
+					<ul class="home"></ul>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="/public/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		$.ajax({
+			url: '/api/brandclasscontent',
+			type: 'post',
+			dataType: 'json',
+			success: function(data) {
+				var ht = '';
+				if (data.code == 0) {
+					for (var i = 0; i < data.msg.length; i++) {
+						ht += "<li> " +
+							"<a href = '#' class = 'imgborder' >" +
+							"<img src = '" + data.msg[i].bcc_img + "' >" +
+							"</a>" +
+							"<a href = '#' ><p>" + data.msg[i].bcc_name_ch + "</p></a>" +
+							"<a href = '#' ><p>" + data.msg[i].bcc_name_eh + "</p></a>" +
+							"</li>";
+					}
+					$('.home').append(ht);
+				}
+			}
+		});
+	</script>
+</html>
